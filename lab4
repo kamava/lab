@@ -1,0 +1,262 @@
+     using System;
+
+namespace lab4_3
+{/*Створити клас. У тілі класу створіть поля. Створіть 3 похідних класу 
+    (або менше якщо це неможливо і недоречно в ході реалізації програми). Для кожного класу задайте і виведіть тільки необхідну для похідного класу інформацію. 
+    Написати програму, яка виводить в дебаг інформацію про кожного властивості класу.
+    */
+    class Program
+    {
+        class personal
+        {
+            public double rate { get; set; }
+            public double hours { get; set; }
+            public void print()
+            {
+                Console.WriteLine("Enter name employee");
+                string name = Console.ReadLine();
+                Console.WriteLine("Enter hours");
+                double hours = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Enter hours");
+                double rate = Convert.ToDouble(Console.ReadLine());
+                double salary = rate * hours;
+                Console.WriteLine("Name: " + name);
+                Console.WriteLine("Rate: " + rate);
+                Console.WriteLine("Hours: " + hours);
+                Console.WriteLine("Salary:" + salary);
+                
+
+            }
+
+
+            /*public double Salary()
+            {
+            public double salary { get; set; }
+                Console.WriteLine("Enter name employee");
+                string name =Console.ReadLine();
+                Console.WriteLine("Enter hours");
+                double hours = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Enter hours");
+                double rate = Convert.ToDouble(Console.ReadLine());
+                salary = rate * hours;
+                Console.WriteLine("Name: " + name);
+                Console.WriteLine("Rate: " + rate);
+                Console.WriteLine("Hours: " + hours);
+                Console.WriteLine("Salary:" + salary);
+                return salary;
+            }*/
+
+        }
+        class director : personal
+        {
+            public void prints()
+            {
+                Console.WriteLine("Say to almost premium");
+            }
+            
+        }
+        class cashier:personal
+        {
+            public void printes()
+            {
+                Console.WriteLine("Penalty again");
+            }
+
+        }
+
+        static void Main(string[] args)
+        {
+            director shapran = new director();
+            shapran.prints();
+            shapran.prints();
+            cashier konstantinov = new cashier();
+            konstantinov.printes();
+
+
+            
+        }
+    }
+}
+
+using System;
+
+namespace lab4_4
+{/*
+    Створіть клас ApplicationLicense. У тілі класу створіть три методи AllowTrial (), AllowCommon (), AllowPro ().
+    У тілі кожного з методів додайте висновок на екран відповідних рядків: "Тріальній режим", "Безкоштовна версія", "Платна версія".
+
+
+
+
+
+    При необхідності створюйте похідні класи і перевизначите відповідні методи. У тілі методу Main () реалізуйте можливість прийому від користувача номера ключа доступу trial і pro. 
+    Якщо користувач не вводить ключ, він може користуватися тільки безкоштовною версією якщо користувач ввів номера ключа доступу pro і trial - йому відкривається повний або урізаний доступ до додатка. 
+    При будь-яких діях користувача, які мають відношення до роботи програми - перевіряйте і виводите його рівень доступу.
+    */
+
+
+
+     public class ApplicationLicense
+    {
+       
+        public void AllowCommon()
+        {
+            Console.WriteLine("Безкоштовна версія");
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("********************");
+            Console.WriteLine("**** Мой проект ****");
+            Console.WriteLine("********************");
+            Console.WriteLine("Безкоштовна версія");
+        }
+        public void AllowTrial()
+        {
+            Console.WriteLine("Тріальній режим");
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("********************");
+            Console.WriteLine("**** Мой проект ****");
+            Console.WriteLine("********************");
+
+            Console.WriteLine("Тріальній режим");
+        }
+        public void AllowPro()
+    {
+            Console.WriteLine("Платна версія");
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("********************");
+            Console.WriteLine("**** Мой проект ****");
+            Console.WriteLine("********************");
+            Console.WriteLine("Платна версія");
+
+    }
+}
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ApplicationLicense pass = new ApplicationLicense();
+            
+            Console.WriteLine("Enter the CODE");
+            
+            string s = Console.ReadLine();
+            int l = s.Length;
+            switch (l)
+            {
+                case 0:
+                case 1:
+                case 2:
+                    pass.AllowPro();
+                    break;
+                    
+                case 3:
+                    pass.AllowTrial();
+                    break;
+                   
+                default:
+                    pass.AllowCommon();
+                    break;
+            }
+
+
+
+
+        }
+    }
+}
+
+using System;
+
+namespace lab4_1
+{ /*Створіть клас. У тілі класу створіть метод, який приймає значення.
+    Метод, в своїй реалізації повинен виводити в дебаг значення всіх використовуваних в ньому аргументів. 
+    Реалізуйте можливість того, щоб в разі успадкування від даного класу інших класів, і виклик відповідного методу їх примірника,
+    рядки (для опису завдання, це можуть бути і не рядки а відповідні програми типи), передані в якості аргументів методів,
+    виводилися в дебаг із зазначенням їх типів різними кольорами. Обов'язково використовуйте приведення типів.
+
+    */
+
+
+    class Book
+    {
+        public string Name { get; set; }
+        public Book(string name)
+        {
+            Name = name;
+        }
+        public void Display()
+        {
+            Console.WriteLine($"Name of book : {Name}");
+        }
+    }
+
+    class type : Book
+    {
+        public string TYPE { get; set; }
+        public type(string name, string type) : base(name)
+        {
+            TYPE = type;
+            Console.WriteLine($"Type of book : {TYPE}");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+
+        {
+            Console.WriteLine("Enter name of your book and type");
+            Book some = new type(Console.ReadLine(), Console.ReadLine());
+            some.Display();
+            Console.ReadKey();
+        }
+    }
+}
+
+using System;
+
+namespace lab4_2
+{
+    /*Створити клас "А,"  який у вигляді параметра повинен приймати екземпляр іншого класу, відповідно до Вашої програмою. Створіть базовий клас "Б".
+     * У тілі класу створіть методи. Створіть 3 похідних класу від базового класу і перевизначите кожен з методів, в залежності від необхідності. 
+     * Конструктор класу А приймає аргументи типу базового класу "Б". Передбачте можливість того, що користувач може передати 2 або 3 аргумента. Виведіть в дебаг інформацію властивостей похідних класів.
+    */
+    class b
+    {
+        public string Name { get; set; }
+        public b(string name)
+        {
+            Name = name;
+        }
+        public void Display()
+        {
+            Console.WriteLine($"Name writer of picture : {Name}");
+        }
+
+    }
+
+    class a : b
+    {
+        public string Kind { get; set; }
+        public a(string name, string type) : base(name)
+        {
+            Kind = type;
+            Console.WriteLine($"Name of picture : {Kind}");
+        }
+
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter name pictures and writer pictures");
+            b some = new a(Console.ReadLine(), Console.ReadLine());
+            some.Display();
+            Console.ReadKey();
+
+
+
+        }
+    }
+}
