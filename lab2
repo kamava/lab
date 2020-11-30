@@ -1,0 +1,592 @@
+using System;
+
+namespace lab2_4
+{/*
+  
+Создать классы Point и Figure.
+
+Класс Point должен содержать два целочисленных поля и одно строковое поле.
+
+Создать три свойства с одним методом доступа get.
+
+Создать пользовательский конструктор, в теле которого проинициализируйте поля значениями
+
+аргументов. Класс Figure должен содержать конструкторы, которые принимают от 3-х до 5-ти
+
+аргументов типа Point.
+
+Создать два метода: double LengthSide(Point A, Point B), который рассчитывает длину
+
+стороны многоугольника; void PerimeterCalculator(), который рассчитывает периметр
+
+многоугольника.
+
+Написать программу, которая выводит на экран название и периметр многоугольника.
+    */
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Drawing;
+
+    namespace Многоугольник
+    {
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("Hello Karyna Viktorovna ");
+                Console.ResetColor();
+                Point[] points = { new Point(3, 4), new Point(6, 3), new Point(10, 5), new Point(8, 7) };
+                int[] numbers = { 2, 3, 7, 4, 5, 1, 3, 5 };
+
+                Многоугольник MN = new Многоугольник();
+                Многоугольник m = MN.factory(points);
+
+
+                if (m != null)
+                {
+                    Console.WriteLine("Многоугольник создан!");
+                    double n = m.Perimeter_points();
+                    Console.WriteLine("Периметр прямоугольника из точек равен: {0:f3}", n);
+                }
+
+                else
+                    Console.WriteLine("Параметры для создания многоугольника не верны!");
+
+
+                Console.ReadLine();
+            }
+        }
+        class Многоугольник
+        {
+            Point[] points;
+            int[] numbers;
+
+            public Многоугольник()
+            {
+            }
+            public Многоугольник factory(params int[] numbers)
+            {
+                if ((numbers.Length >= 6) && (numbers.Length % 2 == 0))
+                {
+                    Многоугольник мн = new Многоугольник();
+                    мн.numbers = numbers;
+                    return мн;
+                }
+                else
+                    return null;
+            }
+            public Многоугольник factory(params Point[] points)
+            {
+                if (points.Length >= 3)
+                {
+                    Многоугольник мн = new Многоугольник();
+                    мн.points = points;
+                    return мн;
+                }
+                else
+                    return null;
+            }
+            public double Perimeter_points()
+            {
+                double P = 0;
+                int i = 0;
+                int j = 1;
+
+                for (i = 0; i < points.Length; i++)
+                {
+                    P += Math.Sqrt(Math.Pow((points[i].X - points[j].X), 2) +
+                                   Math.Pow((points[i].Y - points[j].Y), 2));
+                    j++;
+                    if (j == points.Length)
+                        j = 0;
+                }
+                return P;
+            }
+        }
+    }
+    
+    
+}
+
+using System;
+
+namespace lab2_5
+{
+    /*
+Создать класс User, содержащий информацию о пользователе (логин, имя, фамилия, возраст, дата
+
+заполнения анкеты). Поле дата заполнения анкеты должно быть проинициализировано только один раз
+
+(при создании экземпляра данного класса) без возможности его дальнейшего изменения.
+
+Реализуйте вывод на экран информации о пользователе.
+    */
+
+        class users
+    {
+        string login;
+        string name;
+        string surname;
+        int years;
+        DateTime date1 = new DateTime(2015, 7, 20); 
+        
+         public users()
+        {
+            Console.WriteLine("Parse login");
+            login = Console.ReadLine();
+            Console.WriteLine("Parse name");
+            name = Console.ReadLine();
+            Console.WriteLine("Parse surname");
+            surname = Console.ReadLine();
+            Console.WriteLine("Parse age");
+            years = Convert.ToInt32(Console.ReadLine());
+            
+        }
+         public void print()
+        {
+            Console.WriteLine("Your login "+login);
+            Console.WriteLine("Your name "+name);
+            Console.WriteLine("Your surname " +surname);
+            Console.WriteLine("Your age " + years);
+            Console.WriteLine("Your date "+date1);
+
+        }
+        
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Hello FIT ");
+            Console.ResetColor();
+            users someUser = new users();
+            someUser.print();
+            Console.ReadKey();
+        }
+    }
+}
+
+using System;
+
+
+namespace lab2_6
+{/*
+
+Создать класс Converter.
+
+В теле класса создать пользовательский конструктор, который принимает три вещественных аргумента,
+
+и инициализирует поля соответствующие курсу 3-х основных валют, по отношению к гривне – public
+
+Converter(double usd, double eur, double rub).
+
+Написать программу, которая будет выполнять конвертацию из гривны в одну из указанных валют,
+
+также программа должна производить конвертацию из указанных валют в гривну.
+        */
+
+
+    /*if(!int.TryParse(Console.ReadLine(), out a))
+           {
+               Console.WriteLine("Ошибка ввода! Введите целое число a");
+           }
+           else
+           {
+               sum_uah_usd = uah * 28.37;
+               sum_uah_eur = uah * 33.73;
+               sum_uah_rub = uah * 0.38;
+               Console.WriteLine("Kurs uah" + sum_uah_usd, sum_uah_eur, sum_uah_rub);
+           }*/
+
+
+    /*
+            if (selection == "+")
+        {
+            sum_uah_usd = uah / 28.37;
+            Console.WriteLine("Kurs uah-usd " + sum_uah_usd);
+
+        }
+        else
+        {
+
+        }
+            */
+
+    public class Convector
+    {
+        public double uah = Convert.ToDouble(Console.ReadLine());
+        public void print()
+        {
+
+
+            Console.WriteLine("Нажмите + (Для расчета курса гривны в доллар) или -(Для расчета курса доллар в гривны )");
+            string selection = Console.ReadLine();
+            double z = selection == "+" ? (uah / 28.37) : (uah * 28.37);
+            Console.WriteLine("Kurs " + z);
+            Console.WriteLine("Нажмите + (Для расчета курса гривны в рубль) или -(Для расчета курса рубль в гривны )");
+            string selection1 = Console.ReadLine();
+            double z1 = selection1 == "+" ? (uah * 0.38) : (uah / 0.38);
+            Console.WriteLine("Kurs " + z1);
+            Console.WriteLine("Нажмите + (Для расчета курса гривны в евро) или -(Для расчета курса евро в гривны )");
+            string selection2 = Console.ReadLine();
+            double z2 = selection2 == "+" ? (uah / 33.73) : (uah * 33.73);
+            Console.WriteLine("Kurs " + z2);
+            Console.WriteLine("Нажмите + (Для расчета курса гривны в доллар) или -(Для расчета курса доллар в гривны )");
+        }
+
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                Console.WriteLine("Введите сумму в uah ");
+
+                Convector somersby = new Convector();
+                somersby.print();
+                Console.WriteLine("kurs na");
+                Console.WriteLine(DateTime.Now);
+                Console.ReadKey();
+
+
+
+
+            }
+        }
+    }
+}
+
+
+
+using System;
+
+namespace lab2_7
+{
+    /*7.
+
+Создать класс Employee.
+
+В теле класса создать пользовательский конструктор, который принимает два строковых аргумента, и
+
+инициализирует поля, соответствующие фамилии и имени сотрудника.
+
+Создать метод рассчитывающий оклад сотрудника (в зависимости от должности и стажа) и налоговый
+
+сбор.
+
+Написать программу, которая выводит на экран информацию о сотруднике (фамилия, имя, должность),
+
+оклад и налоговый сбор.
+    */
+
+       public  class employee
+    {
+        public  string name;
+        public string surname;
+        public string post;//dolzhnost 
+        public double  sbor = 19.5;//nalogoviy sbor v protsentah
+        public double stazh = 0.5;// + protsenty za stazh (za 1 god = 0.5)
+        public double status = 10.5;//+ za dolzhnost\
+        public double zp = 10000;// zarprlata
+        public double zp_bez_sbora;
+        public double zp_sbor;
+        public void priyom()
+        {
+            Console.WriteLine("Vvedite name");
+            string name = Console.ReadLine();
+            Console.WriteLine("Vvedite surname");
+            string surname = Console.ReadLine();
+            Console.WriteLine("Vvedite post");
+            string post = Console.ReadLine();
+            Console.WriteLine("Vvedite stazh");
+            double stazh = Convert.ToDouble(Console.ReadLine());
+            stazh = stazh * 1.05;
+            Console.WriteLine("Vvedite status");
+            string status= Console.ReadLine();
+        }
+        public void oklad()
+        {
+            zp_bez_sbora = zp + stazh;
+            zp_sbor = (zp + stazh) - (zp * sbor / 100);
+            Console.WriteLine("Name:" + name);
+            Console.WriteLine("Surname: " + surname);
+            Console.WriteLine("Post : " + post);
+            Console.WriteLine("Stazh:" + stazh);
+            Console.WriteLine("Status:" + status);
+            Console.WriteLine("zp bez sbora" + zp_bez_sbora);
+            Console.WriteLine("chistaya zp" + zp_sbor);
+
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("hello world");
+            employee emplo = new employee();
+            emplo.priyom();
+            emplo.oklad();
+            Console.ReadLine();
+        }
+    }
+}
+
+using System;
+
+namespace LAB2_8
+
+{
+    /*
+    8. Создать класс Invoice.
+
+В теле класса создать три поля int account, string customer, string provider, которые должны
+
+быть проинициализированы один раз (при создании экземпляра данного класса) без возможности их
+
+дальнейшего изменения.
+
+В теле класса создать два закрытых поля string article, int quantity
+
+Создать метод расчета стоимости заказа с НДС и без НДС.
+
+Написать программу, которая выводит на экран сумму оплаты заказанного товара с НДС или без НДС.
+    */
+
+
+        public  class invoice
+    {
+        public static int account;
+        public static string customer;
+        public static  string provider;
+        private string article;
+        private int quantity;
+        public void print()
+        {
+
+            Console.WriteLine("Введите название товара ");
+            string res = Console.ReadLine();
+            Console.WriteLine("Введите цену");
+            double result= Convert.ToDouble(Console.ReadLine());
+           double  result1 = result*1.195;
+            Console.WriteLine("Name "+res);
+            Console.WriteLine("Price bez nds " + result);
+            Console.WriteLine("Price s NDS " + result1);
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+            invoice price = new invoice();
+            price.print();
+            Console.ReadLine();
+        }
+    }
+}
+
+using System;
+
+namespace lab2_1
+{
+    class adress //index, country, city, street, house, apartment.
+    {
+        public int index =  02217;
+        public string country = " Ukraine";
+        public string city = " Kyiv";
+        public string street = " Kybalchicha";
+        public int house =  13;
+        public int apartament =  12;
+         
+        
+        public void print()
+        {
+            Console.WriteLine("Index " + index);
+            Console.WriteLine("Country " + country);
+            Console.WriteLine("City " + city);
+            Console.WriteLine("Street " + street);
+            Console.WriteLine("House " + house);
+            Console.WriteLine("Apartament " + apartament);
+    } 
+
+
+
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Hello Karyna Viktorovna ");
+            Console.ResetColor();
+            
+            adress kybalchicha = new adress();
+            kybalchicha.print();
+      
+        }
+    }
+}
+
+using System;
+
+namespace lab2_2
+{
+    class Rectangle
+    {
+        
+        public double side1;
+        public double side2 ;
+        public double area;
+        public double perimeter;
+       
+        
+      
+        public Rectangle()
+        {
+            Console.WriteLine("vvedite znacheniya Side1");
+            side1 = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("vvedite znacheniya Side2");
+            side2 = Convert.ToDouble(Console.ReadLine());
+            
+            area = side1 * side2;
+            perimeter = side2 + side1;
+        }
+        public void print()
+        {
+            Console.WriteLine("Side 1:" + side1);
+            Console.WriteLine("Side 2:" + side2);
+            Console.WriteLine("Area:" + area);
+            Console.WriteLine("Perimeter:" + perimeter);
+
+        }
+
+
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Hello Karyna Viktorovna ");
+            Console.ResetColor();
+            Rectangle someRectangle = new Rectangle();
+           
+            
+            someRectangle.print();
+            Console.ReadKey();
+
+
+
+
+
+        }
+    }
+}
+
+using System;
+
+namespace lab2_3
+{
+    /*
+     
+
+Создать класс Book. Создать классы Title, Author и Content, каждый из которых должен содержать
+
+одно строковое поле и метод void Show().
+
+Реализуйте возможность добавления в книгу названия книги, имени автора и содержания.
+
+Выведите на экран разными цветами при помощи метода Show() название книги, имя автора и
+
+содержание.
+     */
+    /* class book
+    {
+        public string Name = Console.ReadLine();
+        public void Show()
+        {
+            Console.WriteLine("Name " + Name);
+        }
+
+        class content
+        {
+            
+             public string Content= Console.ReadLine();
+             public void Show()
+            {
+                Console.WriteLine("Content " + Content);
+            }
+            
+        }
+        class author
+        {
+            public string Author = Console.ReadLine();
+            public void Show()
+            {
+                Console.WriteLine("Author " + Author);
+            }
+        }
+        class title
+        {
+            public string   Title = Console.ReadLine();
+            public void Show()
+            {
+                Console.WriteLine("Title  " + Title);
+            }
+        }
+    }
+    */
+    class book
+    {
+        string Name;
+        string Author;
+        string Content;
+        string Title;
+        public book()
+        {
+            Console.WriteLine("Typing name of the book");
+             Name = Console.ReadLine();
+            Console.WriteLine("Typing author of the book");
+            Author = Console.ReadLine();
+            Console.WriteLine("Typing content of the book");
+            Content = Console.ReadLine();
+            Console.WriteLine("Typing title of the book");
+            Title = Console.ReadLine();
+
+        }
+
+        public void Show()
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Name " + Name);
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Content " + Content);
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Author " + Author);
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Title  " + Title);
+            Console.ResetColor();
+        }
+    }
+    
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.WriteLine("Hello Karyna Viktorovna ");
+            Console.ResetColor();
+            book someBook = new book();
+            someBook.Show();
+            Console.ReadKey();
+        }
+    }
+}
